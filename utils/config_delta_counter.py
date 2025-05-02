@@ -44,7 +44,7 @@ class ConfigDeltaCounter:
 
         for key in set(self.current_config.keys()) - proceseed_keys:
             delta["deletions"].append(key)
-
+        delta["deletions"].sort()
         return delta
 
     def get_applied_delta(self, delta: dict) -> dict:

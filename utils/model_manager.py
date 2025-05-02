@@ -27,9 +27,12 @@ class XmlMamanger:
             classes = self.raw_xml.findall("Class")
             if not classes:
                 raise ParseError("No 'Class' elements found")
-            classes = {c.attrib["name"]: Node(**c.attrib,
-                                              attributes=[Node_Attribute(**attr.attrib) for attr in c.findall("Attribute")])
-                       for c in classes}
+            try:
+                classes = {c.attrib["name"]: Node(**c.attrib,
+                                                attributes=[Node_Attribute(**attr.attrib) for attr in c.findall("Attribute")])
+                        for c in classes}
+            except (TypeError, KeyError) as e:
+                raise ParseError(f"Missing attribute in class: {e}")
 
             aggregations = self.raw_xml.findall("Aggregation")
             if not aggregations:

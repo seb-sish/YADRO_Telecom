@@ -12,7 +12,7 @@ def model_configure():
     xml_model = FM.read_xml("./input/model_input.xml")
     xmlm = XmlMamanger(xml_model)
     r = xmlm.validate()
-    if not r:return
+    if not r: return
 
     xml_config = xmlm.generate_config_xml()
     FM.write_xml("./out/config.xml", xml_config)
