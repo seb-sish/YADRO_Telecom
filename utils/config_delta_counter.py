@@ -81,10 +81,22 @@ class ConfigDeltaCounter:
 
     def get_applied_delta(self, delta: dict) -> dict:
         """
-        Применить дельту к текущей конфигурации.
+        Применить дельту к текущей конфигурации и возвратить полученный артефакт,
+        не изменяя текущее значение внутри класса.
 
         :param delta: Словарь дельты, содержащий изменения для применения.
         :return: Обновленная конфигурация в виде словаря.
         """
+        res_patched_config = self.get_current_config()
+        for addition in delta["additions"]:
+            res_patched_config[addition["key"]] = addition["value"]
 
-        return self.patched_config.copy()
+        for deletion in delta["deletions"]:
+            if deletion in res_patched_config:
+                del res_patched_config[deletion]
+
+        for update in delta["updates"]:
+            if update["key"] in res_patched_config:
+                res_patched_config[update["key"]] = update["to"]
+
+        return res_patched_config
