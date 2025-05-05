@@ -21,6 +21,8 @@
   - `meta.json` — мета-информация для UI (дерево объектов).
   - `delta.json` — различия между `config.json` и `patched_config.json`.
   - `res_patched_config.json` — результат применения `delta.json` к `config.json`.
+- `tests/`
+  - `test_utils.py` — тесты для проверки корректности работы скриптов в директории `utils/`.
 - `main.py` — основной скрипт для запуска проекта.
 - `README.md` — описание проекта и его структуры.
 
