@@ -25,6 +25,38 @@ class ConfigDeltaCounter:
             "updates": []
         }
 
+    def get_current_config(self) -> dict:
+        """
+        Получение текущей конфигурации.
+
+        :return: Текущая конфигурация в виде словаря.
+        """
+        return self.current_config.copy()
+
+    def set_current_config(self, current_config: dict):
+        """
+        Установка текущей конфигурации.
+
+        :param current_config: Текущая конфигурация в виде словаря.
+        """
+        self.current_config = current_config
+
+    def get_patched_config(self) -> dict:
+        """
+        Получение обновленной конфигурации.
+
+        :return: Обновленная конфигурация в виде словаря.
+        """
+        return self.patched_config.copy()
+
+    def set_patched_config(self, patched_config: dict):
+        """
+        Установка обновленной конфигурации.
+
+        :param patched_config: Обновленная конфигурация в виде словаря.
+        """
+        self.patched_config = patched_config
+
     def compare_configs(self) -> dict:
         """
         Сравнение предыдущей и текущей конфигураций и подсчет изменений.

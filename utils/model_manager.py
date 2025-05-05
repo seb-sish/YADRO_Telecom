@@ -13,6 +13,31 @@ class XmlMamanger:
     def __init__(self, xml: Element):
         self.raw_xml = xml
 
+    def get_raw_xml(self) -> Element:
+        """
+        Получить необработанный XML.
+
+        :return: Элемент XML.
+        """
+        return self.raw_xml
+    
+    def set_raw_xml(self, xml: Element):
+        """
+        Установить необработанный XML.
+
+        :param xml: Элемент XML.
+        """
+        self.raw_xml = xml
+        self.validated_tree = None
+    
+    def get_validated_tree(self) -> Node | None:
+        """
+        Получить проверенное дерево узлов.
+
+        :return: Корневой узел проверенного дерева.
+        """
+        return self.validated_tree
+
     def validate(self) -> set[Node] | bool:
         """
         Проверить структуру XML.
