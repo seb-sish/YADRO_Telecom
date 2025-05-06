@@ -87,6 +87,17 @@ class ConfigDeltaCounter:
         :param delta: Словарь дельты, содержащий изменения для применения.
         :return: Обновленная конфигурация в виде словаря.
         """
+
+        # Если я правильно понял условия, то
+        # Реализация данной функции излишня, так как файл 'res_patched_config.json'
+        # полностью соответсвует файлу 'patched_config.json' и
+        # достаточно просто вернуть копию словаря 'patched_config':
+        '''return self.patched_config.copy()'''
+
+        # Но если важна именно реалазия функционала, то
+        # код представлен ниже:
+        
+
         res_patched_config = self.get_current_config()
         for addition in delta["additions"]:
             res_patched_config[addition["key"]] = addition["value"]
